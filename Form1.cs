@@ -60,7 +60,7 @@ namespace BlumClickWinForm
         public void SetFormScale(int width, int height)
         {
             Width = width;
-            Height = height + 80;
+            Height = height + 100;
         }
 
         private void buttonRun_Click(object sender, System.EventArgs e)
@@ -69,9 +69,26 @@ namespace BlumClickWinForm
             buttonRun.Enabled = false;
         }
 
-        private void buttonRun_MouseEnter(object sender, System.EventArgs e)
+        private void trackBarWidth_Scroll(object sender, System.EventArgs e)
         {
-            toolTipStart.Show("Press CTRL to STOP", buttonRun);
+            imageProcess.SetWidthScreenshot(trackBarWidth.Value);
+        }
+
+        private void trackBarHeight_Scroll(object sender, System.EventArgs e)
+        {
+            imageProcess.SetHeightScreenshot(trackBarHeight.Value);
+        }
+
+        private void buttonHelp_Click(object sender, System.EventArgs e)
+        {
+            toolTipStart.Show(
+                "Нажмите CTRL для остановки бота." +
+                "\nПолзунки служат для изменения параметров захвата изображения." +
+                "\nСначала подгоните ширину под размер Blum" +
+                "\nЗатем высоту видимости настройте по вашему желанию." +
+                "\nРазместите окно Blum в центре этой области." +
+                "\n\nЧем больше область тем меньше производительность!!!",
+                buttonRun);
         }
     }
 }

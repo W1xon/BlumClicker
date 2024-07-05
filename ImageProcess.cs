@@ -7,9 +7,11 @@ using System.Windows.Forms;
 
 namespace BlumClickWinForm
 {
+
     internal class ImageProcess
     {
-        private int LeftOffset = 760, TopOffset = 450, RightOffset = 770, BottomOffset = 450;
+        public Offset offset;
+        private Rectangle screenBounds;
 
         private bool isScaleUp;
         private System.Timers.Timer timerIce;
@@ -40,6 +42,14 @@ namespace BlumClickWinForm
             //ColorToInt(51, 209, 38),
             
             //цвет после обновления
+            ColorToInt(174, 172, 167),
+            ColorToInt(114, 113, 105),
+            ColorToInt(120, 121, 118),
+            ColorToInt(53, 49, 31),
+            ColorToInt(216, 30, 164),
+            ColorToInt(225, 9, 152),
+            ColorToInt(200, 43, 154),
+            ColorToInt(153, 34, 76),
             ColorToInt(255, 0, 198),
             ColorToInt(253, 1, 205),
             ColorToInt(255, 0, 198),
@@ -75,16 +85,8 @@ namespace BlumClickWinForm
             ColorToInt(92, 92, 92),
             ColorToInt(63, 60, 54),
             ColorToInt(94, 86, 80),
-            ColorToInt(174, 172, 167),
-            ColorToInt(114, 113, 105), 
-            ColorToInt(120, 121, 118),
-            ColorToInt(53, 49, 31),
-            ColorToInt(216, 30, 164),
-            ColorToInt(225, 9, 152),
-            ColorToInt(200, 43, 154),
-            ColorToInt(153, 34, 76),
         };
-        
+
         //Это цвета льдинок
         private HashSet<int> targetIceColors = new HashSet<int>
         {
@@ -107,6 +109,13 @@ namespace BlumClickWinForm
             ColorToInt(45, 186, 241),
             ColorToInt(72, 160, 211),
             ColorToInt(81, 165, 224),
+            ColorToInt(67, 160, 222),
+            ColorToInt(64, 162, 223),
+            ColorToInt(68, 159, 211),
+            ColorToInt(71, 175, 231),
+            ColorToInt(22, 90, 153),
+            ColorToInt(54, 187, 240),
+            ColorToInt(70, 140, 199),
         };
 
         public ImageProcess()
@@ -114,21 +123,31 @@ namespace BlumClickWinForm
             timerIce = new System.Timers.Timer();
             timerIce.Interval = 2500;
             timerIce.Elapsed += timerIce_Tick;
+            screenBounds = Screen.PrimaryScreen.Bounds;
+
+            SetOffset();
         }
         private static int ColorToInt(int r, int g, int b)
         {
             return (r << 16) | (g << 8) | b;
         }
+        private void SetOffset()
+        {
+            int percent = 40;
+            offset.Left = screenBounds.Width * percent / 100;
+            offset.Top = screenBounds.Height * percent / 100;
+            offset.Right = screenBounds.Width * percent / 100;
+            offset.Bottom = screenBounds.Height * percent / 100;
+            offset.SaveBaseOffset();
+        }
         public Bitmap Screenshot()
         {
-            Rectangle screenBounds = Screen.PrimaryScreen.Bounds;
-
             Rectangle captureRectangle = new Rectangle
                 (
-                LeftOffset,
-                TopOffset,
-                screenBounds.Width - LeftOffset - RightOffset,
-                screenBounds.Height - TopOffset - BottomOffset
+                offset.Left,
+                offset.Top,
+                screenBounds.Width - offset.Left - offset.Right,
+                screenBounds.Height - offset.Top - offset.Bottom
                 );
 
             Bitmap img = new Bitmap(captureRectangle.Width, captureRectangle.Height);
@@ -165,13 +184,13 @@ namespace BlumClickWinForm
 
                     if (targetIceColors.Contains(pixelColor))
                     {
-                        MouseSimulator.MouseMoveToPoint(new Point(x + LeftOffset, y + TopOffset));
+                        MouseSimulator.MouseMoveToPoint(new Point(x + offset.Left, y + offset.Top));
                         TemporaryScaleUp();
                         return;
                     }
                     if (targetGreenColors.Contains(pixelColor))
                     {
-                        MouseSimulator.MouseMoveToPoint(new Point(x + LeftOffset, y + TopOffset));
+                        MouseSimulator.MouseMoveToPoint(new Point(x + offset.Left, y + offset.Top));
                         return;
                     }
                 }
@@ -185,17 +204,43 @@ namespace BlumClickWinForm
         private void TemporaryScaleUp()
         {
             if (isScaleUp) return;
-            TopOffset -= 250;
-            BottomOffset -= 150;
+            offset.Top -= offset.baseOffset[1] * 30 / 100;
+            offset.Bottom -= offset.baseOffset[1] * 30 / 100;
             timerIce.Start();
             isScaleUp = true;
         }
         private void ScaleDown()
         {
-            TopOffset += 250;
-            BottomOffset += 150;
+            offset.Top += offset.baseOffset[1] * 30 / 100;
+            offset.Bottom += offset.baseOffset[1] * 30 / 100;
             isScaleUp = false;
         }
 
+        public void SetWidthScreenshot(int addOffset)
+        {
+            if (!CheckWidthBounds(addOffset)) return;
+            offset.Left = offset.baseOffset[0] - addOffset;
+            offset.Right = offset.baseOffset[2] - addOffset;
+        }
+        public void SetHeightScreenshot(int addOffset)
+        {
+            if (!CheckHeightBounds(addOffset)) return;
+            offset.Top = offset.baseOffset[1] - addOffset;
+            offset.Bottom = offset.baseOffset[3] - addOffset;
+        }
+        private bool CheckWidthBounds(int addOffset)
+        {
+            return CheckBounds(offset.Left, offset.Right, screenBounds.Width, addOffset);
+        }
+        private bool CheckHeightBounds(int addOffset)
+        {
+            return CheckBounds(offset.Top, offset.Bottom, screenBounds.Width, addOffset);
+        }
+        private bool CheckBounds(int oneOffset, int twoOffset, int maxSize, int addOffset)
+        {
+            if (oneOffset - addOffset <= 0 || twoOffset - addOffset <= 0) return false;
+            if ((oneOffset - addOffset + twoOffset - addOffset) > maxSize) return false;
+            return true;
+        }
     }
 }

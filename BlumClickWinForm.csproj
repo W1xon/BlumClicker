@@ -55,6 +55,7 @@
     <Compile Include="ImageProcess.cs" />
     <Compile Include="KeyControl.cs" />
     <Compile Include="MouseSimulator.cs" />
+    <Compile Include="Offset.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
