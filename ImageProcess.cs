@@ -143,8 +143,6 @@ namespace BlumClickWinForm
             int width = img.Width;
             int height = img.Height;
 
-            BlumClick.SetFormScale(width, height);
-
             List<Point> points = new List<Point>();
             BitmapData bitmapData = img.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
             int bytesPerPixel = Image.GetPixelFormatSize(bitmapData.PixelFormat) / 8;

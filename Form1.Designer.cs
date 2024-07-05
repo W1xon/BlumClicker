@@ -49,13 +49,14 @@
             this.buttonRun.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonRun.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonRun.Location = new System.Drawing.Point(147, 162);
+            this.buttonRun.Location = new System.Drawing.Point(142, 162);
             this.buttonRun.Name = "buttonRun";
             this.buttonRun.Size = new System.Drawing.Size(137, 33);
             this.buttonRun.TabIndex = 1;
             this.buttonRun.Text = "Start";
             this.buttonRun.UseVisualStyleBackColor = true;
             this.buttonRun.Click += new System.EventHandler(this.buttonRun_Click);
+            this.buttonRun.MouseEnter += new System.EventHandler(this.buttonRun_MouseEnter);
             // 
             // BlumClick
             // 

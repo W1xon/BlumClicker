@@ -10,26 +10,37 @@ namespace BlumClickWinForm
         ImageProcess imageProcess;
         private static SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
 
-        public static BlumClick form1;
+        private bool isClickerActive = false;
+
+        private ToolTip toolTipStart = new ToolTip();
         public BlumClick()
         {
             InitializeComponent();
-            form1 = this;
             imageProcess = new ImageProcess();
 
+            Task.Run(async () =>
+            {
+                await RunClicker();
+            });
         }
         private async Task RunClicker()
         {
-            while (!KeyControl.IsActiveCTRL())
+            while (true)
             {
+                if (KeyControl.IsActiveCTRL())
+                {
+                    buttonRun.Enabled = true;
+                    isClickerActive = false;
+                }
+
                 await Task.Run(async () =>
                  {
                      semaphore.Wait();
                      try
                      {
-                         Bitmap screen = imageProcess.Screenshot();
-                         Bitmap picture = new Bitmap(screen);
-                         pictureBoxScreen.Image = picture;
+                         Bitmap screen = ImageCapture();
+                         SetFormScale(screen.Width, screen.Height);
+                         if (!isClickerActive) return;
                          await imageProcess.DetectedPixel(screen);
                      }
                      finally
@@ -38,22 +49,29 @@ namespace BlumClickWinForm
                      }
                  });
             }
-            buttonRun.Enabled = true;
-            return;
         }
-        public static void SetFormScale(int width, int height)
+        private Bitmap ImageCapture()
         {
-            form1.Width = width;
-            form1.Height = height + 80;
+            Bitmap screen = imageProcess.Screenshot();
+            Bitmap picture = new Bitmap(screen);
+            pictureBoxScreen.Image = picture;
+            return screen;
+        }
+        public void SetFormScale(int width, int height)
+        {
+            Width = width;
+            Height = height + 80;
         }
 
         private void buttonRun_Click(object sender, System.EventArgs e)
         {
+            isClickerActive = true;
             buttonRun.Enabled = false;
-            Task.Run(async () =>
-            {
-                await RunClicker();
-            });
+        }
+
+        private void buttonRun_MouseEnter(object sender, System.EventArgs e)
+        {
+            toolTipStart.Show("Press CTRL to STOP", buttonRun);
         }
     }
 }
