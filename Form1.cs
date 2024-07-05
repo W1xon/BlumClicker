@@ -17,10 +17,6 @@ namespace BlumClickWinForm
             form1 = this;
             imageProcess = new ImageProcess();
 
-            Task.Run(async () =>
-            {
-                await RunClicker();
-            });
         }
         private async Task RunClicker()
         {
@@ -42,11 +38,22 @@ namespace BlumClickWinForm
                      }
                  });
             }
+            buttonRun.Enabled = true;
+            return;
         }
         public static void SetFormScale(int width, int height)
         {
             form1.Width = width;
-            form1.Height = height + 40;
+            form1.Height = height + 80;
+        }
+
+        private void buttonRun_Click(object sender, System.EventArgs e)
+        {
+            buttonRun.Enabled = false;
+            Task.Run(async () =>
+            {
+                await RunClicker();
+            });
         }
     }
 }

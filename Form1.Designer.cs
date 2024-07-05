@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BlumClick));
             this.pictureBoxScreen = new System.Windows.Forms.PictureBox();
+            this.buttonRun = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxScreen)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,15 +40,29 @@
             this.pictureBoxScreen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxScreen.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxScreen.Name = "pictureBoxScreen";
-            this.pictureBoxScreen.Size = new System.Drawing.Size(434, 78);
+            this.pictureBoxScreen.Size = new System.Drawing.Size(434, 195);
             this.pictureBoxScreen.TabIndex = 0;
             this.pictureBoxScreen.TabStop = false;
+            // 
+            // buttonRun
+            // 
+            this.buttonRun.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonRun.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonRun.Location = new System.Drawing.Point(147, 162);
+            this.buttonRun.Name = "buttonRun";
+            this.buttonRun.Size = new System.Drawing.Size(137, 33);
+            this.buttonRun.TabIndex = 1;
+            this.buttonRun.Text = "Start";
+            this.buttonRun.UseVisualStyleBackColor = true;
+            this.buttonRun.Click += new System.EventHandler(this.buttonRun_Click);
             // 
             // BlumClick
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 78);
+            this.ClientSize = new System.Drawing.Size(434, 195);
+            this.Controls.Add(this.buttonRun);
             this.Controls.Add(this.pictureBoxScreen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -61,6 +76,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxScreen;
+        private System.Windows.Forms.Button buttonRun;
     }
 }
 
