@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="ImageProcess.cs" />
     <Compile Include="KeyControl.cs" />
+    <Compile Include="LibraryColor.cs" />
     <Compile Include="MouseSimulator.cs" />
     <Compile Include="Offset.cs" />
     <Compile Include="Program.cs" />

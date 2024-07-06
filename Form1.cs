@@ -7,16 +7,16 @@ namespace BlumClickWinForm
 {
     public partial class BlumClick : Form
     {
-        ImageProcess imageProcess;
-        private static SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
+        private ImageProcess _imageProcess;
+        private static SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
-        private bool isClickerActive = false;
+        private bool _isClickerActive = false;
 
-        private ToolTip toolTipStart = new ToolTip();
+        private ToolTip _toolTipStart = new ToolTip();
         public BlumClick()
         {
             InitializeComponent();
-            imageProcess = new ImageProcess();
+            _imageProcess = new ImageProcess();
 
             Task.Run(async () =>
             {
@@ -30,29 +30,29 @@ namespace BlumClickWinForm
                 if (KeyControl.IsActiveCTRL())
                 {
                     buttonRun.Enabled = true;
-                    isClickerActive = false;
+                    _isClickerActive = false;
                 }
 
                 await Task.Run(async () =>
                  {
-                     semaphore.Wait();
+                     _semaphore.Wait();
                      try
                      {
                          Bitmap screen = ImageCapture();
                          SetFormScale(screen.Width, screen.Height);
-                         if (!isClickerActive) return;
-                         await imageProcess.DetectedPixel(screen);
+                         if (!_isClickerActive) return;
+                         await _imageProcess.DetectedPixel(screen);
                      }
                      finally
                      {
-                         semaphore.Release();
+                         _semaphore.Release();
                      }
                  });
             }
         }
         private Bitmap ImageCapture()
         {
-            Bitmap screen = imageProcess.Screenshot();
+            Bitmap screen = _imageProcess.Screenshot();
             Bitmap picture = new Bitmap(screen);
             pictureBoxScreen.Image = picture;
             return screen;
@@ -65,23 +65,23 @@ namespace BlumClickWinForm
 
         private void buttonRun_Click(object sender, System.EventArgs e)
         {
-            isClickerActive = true;
+            _isClickerActive = true;
             buttonRun.Enabled = false;
         }
 
         private void trackBarWidth_Scroll(object sender, System.EventArgs e)
         {
-            imageProcess.SetWidthScreenshot(trackBarWidth.Value);
+            _imageProcess.SetWidthScreenshot(trackBarWidth.Value);
         }
 
         private void trackBarHeight_Scroll(object sender, System.EventArgs e)
         {
-            imageProcess.SetHeightScreenshot(trackBarHeight.Value);
+            _imageProcess.SetHeightScreenshot(trackBarHeight.Value);
         }
 
         private void buttonHelp_Click(object sender, System.EventArgs e)
         {
-            toolTipStart.Show(
+            _toolTipStart.Show(
                 "Нажмите CTRL для остановки бота." +
                 "\nПолзунки служат для изменения параметров захвата изображения." +
                 "\nСначала подгоните ширину под размер Blum" +
