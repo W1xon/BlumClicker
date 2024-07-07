@@ -1,82 +1,42 @@
-﻿using System.Drawing;
-using System.Threading;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BlumClickWinForm
 {
-    public partial class BlumClick : Form
+    public partial class BlumClickForm : Form
     {
-        private ImageProcess _imageProcess;
-        private static SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
-
-        private bool _isClickerActive = false;
-
+        private Bot _bot;
         private ToolTip _toolTipStart = new ToolTip();
-        public BlumClick()
+        public BlumClickForm()
         {
             InitializeComponent();
-            _imageProcess = new ImageProcess();
-
-            Task.Run(async () =>
-            {
-                await RunClicker();
-            });
+            _bot = new Bot(this);
+            Start();
         }
-        private async Task RunClicker()
-        {
-            while (true)
-            {
-                if (KeyControl.IsActiveCTRL())
-                {
-                    buttonRun.Enabled = true;
-                    _isClickerActive = false;
-                }
 
-                await Task.Run(async () =>
-                 {
-                     _semaphore.Wait();
-                     try
-                     {
-                         Bitmap screen = ImageCapture();
-                         SetFormScale(screen.Width, screen.Height);
-                         if (!_isClickerActive) return;
-                         await _imageProcess.DetectedPixel(screen);
-                     }
-                     finally
-                     {
-                         _semaphore.Release();
-                     }
-                 });
-            }
-        }
-        private Bitmap ImageCapture()
+        private void Start()
         {
-            Bitmap screen = _imageProcess.Screenshot();
-            Bitmap picture = new Bitmap(screen);
-            pictureBoxScreen.Image = picture;
-            return screen;
+            Task.Run(async () => { await _bot.Run(); });
         }
         public void SetFormScale(int width, int height)
         {
             Width = width;
-            Height = height + 100;
+            Height = height + 240;
         }
-
         private void buttonRun_Click(object sender, System.EventArgs e)
         {
-            _isClickerActive = true;
-            buttonRun.Enabled = false;
+            _bot.SetActive(true);
+            _bot.SetAutoStart(checkBoxAutoRun.Checked);
         }
 
         private void trackBarWidth_Scroll(object sender, System.EventArgs e)
         {
-            _imageProcess.SetWidthScreenshot(trackBarWidth.Value);
+            _bot.GetImage().SetWidthScreenshot(trackBarWidth.Value);
         }
-
         private void trackBarHeight_Scroll(object sender, System.EventArgs e)
         {
-            _imageProcess.SetHeightScreenshot(trackBarHeight.Value);
+            _bot.GetImage().SetHeightScreenshot(trackBarHeight.Value);
         }
 
         private void buttonHelp_Click(object sender, System.EventArgs e)
@@ -84,11 +44,21 @@ namespace BlumClickWinForm
             _toolTipStart.Show(
                 "Нажмите CTRL для остановки бота." +
                 "\nПолзунки служат для изменения параметров захвата изображения." +
-                "\nСначала подгоните ширину под размер Blum" +
-                "\nЗатем высоту видимости настройте по вашему желанию." +
-                "\nРазместите окно Blum в центре этой области." +
+                "\nСначала разместите окно BLum в центра экрана для корректной работы." +
+                "\nЗатем нажмите кнопку Play в Blum. Далее нажмите кнопку Start в программе." +
+                "\nGame Auto Run отвечает за автоматическое нажатие кнопки Play конце игры в Blum." +
                 "\n\nЧем больше область тем меньше производительность!!!",
                 buttonRun);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://t.me/CoderWorker");
+        }
+
+        private void checkBoxAutoRun_CheckedChanged(object sender, System.EventArgs e)
+        {
+            _bot.SetAutoStart(checkBoxAutoRun.Checked);
         }
     }
 }

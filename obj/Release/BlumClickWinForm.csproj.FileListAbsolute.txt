@@ -1,0 +1,10 @@
+C:\Users\vladi\source\repos\BlumClickWinForm\bin\Release\BlumClickWinForm.exe.config
+C:\Users\vladi\source\repos\BlumClickWinForm\bin\Release\BlumClickWinForm.exe
+C:\Users\vladi\source\repos\BlumClickWinForm\bin\Release\BlumClickWinForm.pdb
+C:\Users\vladi\source\repos\BlumClickWinForm\obj\Release\BlumClickWinForm.csproj.AssemblyReference.cache
+C:\Users\vladi\source\repos\BlumClickWinForm\obj\Release\BlumClickWinForm.BlumClickForm.resources
+C:\Users\vladi\source\repos\BlumClickWinForm\obj\Release\BlumClickWinForm.Properties.Resources.resources
+C:\Users\vladi\source\repos\BlumClickWinForm\obj\Release\BlumClickWinForm.csproj.GenerateResource.cache
+C:\Users\vladi\source\repos\BlumClickWinForm\obj\Release\BlumClickWinForm.csproj.CoreCompileInputs.cache
+C:\Users\vladi\source\repos\BlumClickWinForm\obj\Release\BlumClickWinForm.exe
+C:\Users\vladi\source\repos\BlumClickWinForm\obj\Release\BlumClickWinForm.pdb

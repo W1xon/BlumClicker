@@ -16,7 +16,7 @@ namespace BlumClickWinForm
         private int _scalePercentage;
 
         private System.Timers.Timer _timerIce;
-       
+
         public ImageProcess()
         {
             TimerInitialize();
@@ -24,15 +24,13 @@ namespace BlumClickWinForm
             _scalePercentage = 30;
             SetOffset();
         }
+        public Rectangle GetScreenBounds()
+        {
+            return _screenBounds;
+        }
         public Bitmap Screenshot()
         {
-            Rectangle captureRectangle = new Rectangle
-                (
-                _offset.Left,
-                _offset.Top,
-                _screenBounds.Width - _offset.Left - _offset.Right,
-                _screenBounds.Height - _offset.Top - _offset.Bottom
-                );
+            Rectangle captureRectangle = CreateScreeenRectangle();
 
             Bitmap img = new Bitmap(captureRectangle.Width, captureRectangle.Height);
             using (Graphics g = Graphics.FromImage(img))
@@ -40,6 +38,16 @@ namespace BlumClickWinForm
                 g.CopyFromScreen(captureRectangle.Location, Point.Empty, img.Size);
             }
             return img;
+        }
+        private Rectangle CreateScreeenRectangle()
+        {
+            int x = _offset.Left;
+            int y = _offset.Top;
+            int width = _screenBounds.Width - _offset.Left - _offset.Right;
+            int height = _screenBounds.Height - _offset.Top - _offset.Bottom;
+            if (width < 10) width = 1;
+            if (height < 10) height = 1;
+            return new Rectangle(x, y, width, height);
         }
         public async Task DetectedPixel(Bitmap img)
         {
@@ -88,14 +96,14 @@ namespace BlumClickWinForm
         }
         public void SetHeightScreenshot(int addOffset)
         {
-            if (!CheckBounds(_offset.Top, _offset.Bottom, _screenBounds.Width, addOffset)) return;
+            if (!CheckBounds(_offset.Top, _offset.Bottom, _screenBounds.Height, addOffset)) return;
             _offset.Top = _offset.baseOffset[1] - addOffset;
             _offset.Bottom = _offset.baseOffset[3] - addOffset;
         }
         private bool CheckBounds(int oneOffset, int twoOffset, int maxSize, int addOffset)
         {
             if (oneOffset - addOffset <= 0 || twoOffset - addOffset <= 0) return false;
-            if ((oneOffset - addOffset + twoOffset - addOffset) > maxSize) return false;
+            if (maxSize - (oneOffset + addOffset) - (twoOffset + addOffset) <= 0) return false;
             return true;
         }
         private void TimerInitialize()
@@ -121,7 +129,7 @@ namespace BlumClickWinForm
         private void TemporaryScaleUp()
         {
             if (_isScaledUp) return;
-            SetScaleOffset(_scalePercentage);
+            SetScaleOffset(-_scalePercentage);
             _timerIce.Start();
             _isScaledUp = true;
         }

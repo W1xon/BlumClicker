@@ -16,7 +16,7 @@ namespace BlumClickWinForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BlumClick());
+            Application.Run(new BlumClickForm());
         }
     }
 }

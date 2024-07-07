@@ -7,4 +7,4 @@ C:\Users\vladi\source\repos\BlumClickWinForm\obj\Debug\BlumClickWinForm.csproj.G
 C:\Users\vladi\source\repos\BlumClickWinForm\obj\Debug\BlumClickWinForm.csproj.CoreCompileInputs.cache
 C:\Users\vladi\source\repos\BlumClickWinForm\obj\Debug\BlumClickWinForm.exe
 C:\Users\vladi\source\repos\BlumClickWinForm\obj\Debug\BlumClickWinForm.pdb
-C:\Users\vladi\source\repos\BlumClickWinForm\obj\Debug\BlumClickWinForm.BlumClick.resources
+C:\Users\vladi\source\repos\BlumClickWinForm\obj\Debug\BlumClickWinForm.BlumClickForm.resources
