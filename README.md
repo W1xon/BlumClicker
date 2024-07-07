@@ -1,20 +1,3 @@
-BBBBBBBBBBBBBBBBB                                                 
-B::::::::::::::::B                                                
-B::::::BBBBBB:::::B                                               
-BB:::::B     B:::::B                                              
-  B::::B     B:::::B   lllllll uuuuuu    uuuuuu    mmmmmmm    mmmmmmm
-  B::::B     B:::::B   l:::::l u::::u    u::::u  mm:::::::m  m:::::::mm
-  B::::BBBBBB:::::B    l:::::l u::::u    u::::u m::::::::::mm::::::::::m
-  B:::::::::::::BB     l:::::l u::::u    u::::u m::::::::::::::::::::::m
-  B::::BBBBBB:::::B    l:::::l u::::u    u::::u m:::::mmm::::::mmm:::::m
-  B::::B     B:::::B   l:::::l u::::u    u::::u m::::m   m::::m   m::::m
-  B::::B     B:::::B   l:::::l u::::u    u::::u m::::m   m::::m   m::::m
-  B::::B     B:::::B   l:::::l u:::::l    u:::::m::::m   m::::m   m::::m
-BB:::::BBBBBB::::::Bl l::::::lu::::::uuu::::::um::::m   m::::m   m::::m
-B:::::::::::::::::B  l::::::lu:::::::::::::::um::::m   m::::m   m::::m
-B::::::::::::::::B   l::::::l u:::::::::::::::um::::m   m::::m   m::::m
-BBBBBBBBBBBBBBBBB    llllllll  uuuuuuuu  uuuuuummmmmm   mmmmmm   mmmmmm
-
 # Blum Auto Clicker
 
 ## О проекте
