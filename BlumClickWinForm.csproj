@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bot.cs" />
+    <Compile Include="BotAfk.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
