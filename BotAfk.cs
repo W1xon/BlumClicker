@@ -12,13 +12,11 @@ namespace BlumClickWinForm
         private System.Timers.Timer _timerForNewGame;
         private double _timeForNewGame = 50;
         private BlumClickForm _blumForm;
-        private ImageProcess _imageProcess;
         private Bot _bot;
-        public BotAfk(Bot bot, BlumClickForm blumForm, ImageProcess imageProcess)
+        public BotAfk(Bot bot, BlumClickForm blumForm)
         {
             _blumForm = blumForm;
             _bot = bot;
-            _imageProcess = imageProcess;
             TimerInitialize();
         }
         public void StartTimer()
@@ -72,8 +70,8 @@ namespace BlumClickWinForm
         public Point GetBlumStartPosition()
         {
             Point position = new Point();
-            position.X = _imageProcess.GetScreenBounds().Width / 2;
-            position.Y = ((_imageProcess.GetScreenBounds().Height - 695) / 2) + 600;
+            position.X = ImageProcess.GetScreenBounds().Width / 2;
+            position.Y = ((ImageProcess.GetScreenBounds().Height - 695) / 2) + 600;
             return position;
         }
     }

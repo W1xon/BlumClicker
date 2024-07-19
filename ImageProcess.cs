@@ -3,24 +3,19 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace BlumClickWinForm
 {
 
-    internal class ImageProcess
+    internal static class ImageProcess
     {
-        private Offset _offset;
+        private static Offset _offset = new Offset();
 
-        public ImageProcess()
-        {
-            _offset = new Offset();
-        }
-        public Rectangle GetScreenBounds()
+        public static Rectangle GetScreenBounds()
         {
             return _offset.ScreenBounds;
         }
-        public Bitmap Screenshot()
+        public static Bitmap Screenshot()
         {
             Rectangle captureRectangle = CreateScreeenRectangle();
 
@@ -31,7 +26,7 @@ namespace BlumClickWinForm
             }
             return img;
         }
-        private Rectangle CreateScreeenRectangle()
+        private static Rectangle CreateScreeenRectangle()
         {
             int x = _offset.Left;
             int y = _offset.Top;
@@ -41,7 +36,7 @@ namespace BlumClickWinForm
             CheckHeight(ref height);
             return new Rectangle(x, y, width, height);
         }
-        public async Task DetectedPixel(Bitmap img)
+        public static async Task DetectedPixel(Bitmap img)
         {
             int width = img.Width;
             int height = img.Height;
@@ -80,24 +75,24 @@ namespace BlumClickWinForm
                 }
             }
         }
-        public void SetWidthScreenshot(int addOffset)
+        public static  void SetWidthScreenshot(int addOffset)
         {
             _offset.Left = _offset.baseOffset[0] - addOffset;
             _offset.Right = _offset.baseOffset[2] - addOffset;
         }
-        public void SetHeightScreenshot(int addOffset)
+        public static void SetHeightScreenshot(int addOffset)
         {
             _offset.Top = _offset.baseOffset[1] - addOffset;
             _offset.Bottom = _offset.baseOffset[3] - addOffset;
         }
-        private void CheckWidth(ref int width)
+        private static  void CheckWidth(ref int width)
         {
             if (width < 0)
                 width = 1;
             if (width > _offset.ScreenBounds.Width)
                 width = _offset.ScreenBounds.Width;
         }
-        private void CheckHeight(ref int height)
+        private static void CheckHeight(ref int height)
         {
             if (height < 0)
                 height = 1;

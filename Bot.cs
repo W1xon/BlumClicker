@@ -10,13 +10,11 @@ namespace BlumClickWinForm
         private BotAfk _botAfk;
         private bool _isActive = false;
         private SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
-        private ImageProcess _imageProcess;
         private BlumClickForm _blumForm;
         public Bot(BlumClickForm form)
         {
             _blumForm = form;
-            _imageProcess = new ImageProcess();
-            _botAfk = new BotAfk(this, _blumForm, _imageProcess);
+            _botAfk = new BotAfk(this, _blumForm);
         }
 
         public async Task Run()
@@ -34,7 +32,7 @@ namespace BlumClickWinForm
                          Bitmap screen = DisplayImage(_blumForm.pictureBoxScreen);
                          _blumForm.Invoke((Action)(() => _blumForm.SetFormScale(screen.Width, screen.Height)));
                          if (!_isActive || _botAfk.clickNewGame) return;
-                         await _imageProcess.DetectedPixel(screen);
+                         await ImageProcess.DetectedPixel(screen);
                      }
                      finally
                      {
@@ -48,7 +46,6 @@ namespace BlumClickWinForm
         {
             return _isActive;
         }
-        public ImageProcess GetImage() => _imageProcess;
         public void SetActive(bool isActive)
         {
             _blumForm.buttonRun.Enabled = !isActive;
@@ -68,7 +65,7 @@ namespace BlumClickWinForm
         }
         public Bitmap DisplayImage(PictureBox pictureBox)
         {
-            Bitmap screen = _imageProcess.Screenshot();
+            Bitmap screen = ImageProcess.Screenshot();
             Bitmap picture = new Bitmap(screen);
             _blumForm.Invoke((Action)(() => pictureBox.Image = picture));
             return screen;

@@ -32,11 +32,11 @@ namespace BlumClickWinForm
 
         private void trackBarWidth_Scroll(object sender, System.EventArgs e)
         {
-            _bot.GetImage().SetWidthScreenshot(trackBarWidth.Value);
+            ImageProcess.SetWidthScreenshot(trackBarWidth.Value);
         }
         private void trackBarHeight_Scroll(object sender, System.EventArgs e)
         {
-            _bot.GetImage().SetHeightScreenshot(trackBarHeight.Value);
+            ImageProcess.SetHeightScreenshot(trackBarHeight.Value);
         }
 
         private void buttonHelp_Click(object sender, System.EventArgs e)
