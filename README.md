@@ -12,7 +12,7 @@ Blum Auto Clicker - это программа, предназначенная д
 Файл `BlumClickWinForm.exe` является исполняемым и его нужно скачивать и запускать для работы программы.
 
 ## Об авторе
-Привет! Я - Wixon aka CoderWorker, разработчик этого автокликера. Вы можете связаться со мной в [Telegram](https://t.me/CoderWorker) для вопросов или предложений.
+Привет! Я - Wixon aka CoderWorker, разработчик этого автокликера. Вы можете связаться со мной в [Telegram](https://t.me/CoderWorker) для вопросов или предложений. Последняя новость по [проекту](https://t.me/CoderWorker/629)
 
 ## Дисклеймер
 **ВНИМАНИЕ:** Использование автокликеров может быть против правил игры BLum, и за это возможно получение бана. Я не несу ответственности за использование этой программы. Вы используете ее на свой страх и риск.
@@ -29,7 +29,7 @@ Blum Auto Clicker - это программа, предназначенная д
 # Blum Auto Clicker
 
 ## About the Project
-Blum Auto Clicker is a program designed to automate the BLum game. The program simulates mouse actions, helping the user to automatically play the game and improve their performance.
+Blum Auto Clicker is a program designed to automate the BLum game. The program simulates mouse actions, helping the user to automatically play the game and improve their performance. The latest on the [project](https://t.me/CoderWorker/629)
 
 ### Features
 - **Start and Stop the Bot:** 
