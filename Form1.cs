@@ -24,22 +24,22 @@ namespace BlumClickWinForm
             Width = width;
             Height = height + 240;
         }
-        private void buttonRun_Click(object sender, System.EventArgs e)
+        private void ButtonRun_Click(object sender, System.EventArgs e)
         {
             _bot.SetActive(true);
             _bot.SetAutoStart(checkBoxAutoRun.Checked);
         }
 
-        private void trackBarWidth_Scroll(object sender, System.EventArgs e)
+        private void TrackBarWidthScroll(object sender, System.EventArgs e)
         {
             ImageProcess.SetWidthScreenshot(trackBarWidth.Value);
         }
-        private void trackBarHeight_Scroll(object sender, System.EventArgs e)
+        private void TrackBarHeightScroll(object sender, System.EventArgs e)
         {
             ImageProcess.SetHeightScreenshot(trackBarHeight.Value);
         }
 
-        private void buttonHelp_Click(object sender, System.EventArgs e)
+        private void ButtonHelp_Click(object sender, System.EventArgs e)
         {
             _toolTipStart.Show(
                 "Нажмите CTRL для остановки бота." +
@@ -51,12 +51,12 @@ namespace BlumClickWinForm
                 buttonRun);
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://t.me/CoderWorker");
+            Process.Start("https://t.me/CoderW0rker");
         }
 
-        private void checkBoxAutoRun_CheckedChanged(object sender, System.EventArgs e)
+        private void CheckBoxAutoRun_CheckedChanged(object sender, System.EventArgs e)
         {
             _bot.SetAutoStart(checkBoxAutoRun.Checked);
         }

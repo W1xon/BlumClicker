@@ -23,8 +23,8 @@
         #region Код, автоматически созданный конструктором форм Windows
 
         /// <summary>
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -50,7 +50,7 @@
             this.pictureBoxScreen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxScreen.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxScreen.Name = "pictureBoxScreen";
-            this.pictureBoxScreen.Size = new System.Drawing.Size(379, 509);
+            this.pictureBoxScreen.Size = new System.Drawing.Size(389, 509);
             this.pictureBoxScreen.TabIndex = 0;
             this.pictureBoxScreen.TabStop = false;
             // 
@@ -65,7 +65,7 @@
             this.buttonRun.TabIndex = 1;
             this.buttonRun.Text = "Start";
             this.buttonRun.UseVisualStyleBackColor = true;
-            this.buttonRun.Click += new System.EventHandler(this.buttonRun_Click);
+            this.buttonRun.Click += new System.EventHandler(this.ButtonRun_Click);
             // 
             // trackBarWidth
             // 
@@ -77,7 +77,7 @@
             this.trackBarWidth.Size = new System.Drawing.Size(286, 45);
             this.trackBarWidth.TabIndex = 2;
             this.trackBarWidth.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.trackBarWidth.Scroll += new System.EventHandler(this.trackBarWidth_Scroll);
+            this.trackBarWidth.Scroll += new System.EventHandler(this.TrackBarWidthScroll);
             // 
             // trackBarHeight
             // 
@@ -89,7 +89,7 @@
             this.trackBarHeight.Size = new System.Drawing.Size(286, 45);
             this.trackBarHeight.TabIndex = 3;
             this.trackBarHeight.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.trackBarHeight.Scroll += new System.EventHandler(this.trackBarHeight_Scroll);
+            this.trackBarHeight.Scroll += new System.EventHandler(this.TrackBarHeightScroll);
             // 
             // buttonHelp
             // 
@@ -101,7 +101,7 @@
             this.buttonHelp.TabIndex = 4;
             this.buttonHelp.Text = "❓";
             this.buttonHelp.UseVisualStyleBackColor = true;
-            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
+            this.buttonHelp.Click += new System.EventHandler(this.ButtonHelp_Click);
             // 
             // label1
             // 
@@ -135,7 +135,7 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Author";
             this.linkLabel1.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // checkBoxAutoRun
             // 
@@ -148,7 +148,7 @@
             this.checkBoxAutoRun.TabIndex = 8;
             this.checkBoxAutoRun.Text = "Game Auto Run";
             this.checkBoxAutoRun.UseVisualStyleBackColor = true;
-            this.checkBoxAutoRun.CheckedChanged += new System.EventHandler(this.checkBoxAutoRun_CheckedChanged);
+            this.checkBoxAutoRun.CheckedChanged += new System.EventHandler(this.CheckBoxAutoRun_CheckedChanged);
             // 
             // labelTime
             // 
@@ -165,7 +165,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(379, 509);
+            this.ClientSize = new System.Drawing.Size(389, 509);
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.checkBoxAutoRun);
             this.Controls.Add(this.linkLabel1);
@@ -186,7 +186,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarHeight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
