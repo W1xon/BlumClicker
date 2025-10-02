@@ -9,7 +9,7 @@
 [![Telegram](https://img.shields.io/badge/Telegram-@CoderW0rker-blue?style=flat&logo=telegram)](https://t.me/CoderW0rker)
 [![News](https://img.shields.io/badge/Новости-Канал-blue?style=flat&logo=telegram)](https://t.me/CoderWorker/629)
 
-[Возможности](#-возможности) • [Установка](#-установка) • [Использование](#-использование) • [Скриншоты](#-скриншоты) • [FAQ](#-faq)
+[Возможности](#-возможности) • [Скриншоты](#-скриншоты)
 
 </div>
 
